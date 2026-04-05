@@ -1,14 +1,14 @@
 <!-- pages/articles.vue -->
 <template>
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-[var(--qtimuikit-bnw-4)] flex flex-col">
     <!-- Header -->
-    <header class="flex items-center justify-between px-6 lg:px-12 py-6 max-w-[1440px] mx-auto">
-      <div class="text-2xl font-bold tracking-tight text-black font-sans">
+    <header class="flex items-center justify-between px-6 lg:px-12 py-6 max-w-[1440px] mx-auto w-full">
+      <div class="text-2xl font-bold tracking-tight text-[var(--qtimuikit-bnw-0)] font-sans">
         QTIM
       </div>
 
       <nav class="flex items-center gap-6 lg:gap-8">
-        <div class="hidden md:flex items-center gap-8 text-base font-medium text-gray-900">
+        <div class="hidden md:flex items-center gap-8 text-base font-medium text-[var(--qtimuikit-bnw-0)]">
           <NuxtLink
             to="/works"
             class="hover:opacity-60 transition-opacity"
@@ -24,7 +24,7 @@
         </div>
 
         <div class="flex items-center gap-3">
-          <button class="w-9 h-9 rounded-full overflow-hidden border border-gray-200 hover:border-gray-400 transition-colors">
+          <button class="w-9 h-9 rounded-full overflow-hidden border border-[var(--qtimuikit-bnw-3)] hover:border-[var(--qtimuikit-bnw-2)] transition-colors">
             <img
               src="https://flagcdn.com/w40/gb.png"
               alt="English"
@@ -34,7 +34,7 @@
 
           <UButton
             color="neutral"
-            class="rounded-full px-6 font-medium bg-black text-white hover:bg-gray-900"
+            class="rounded-full px-6 font-medium bg-[var(--qtimuikit-bnw-0)] text-[var(--qtimuikit-bnw-4)] hover:bg-[var(--qtimuikit-bnw-1)]"
           >
             Let's work
           </UButton>
@@ -43,36 +43,33 @@
     </header>
 
     <!-- Main Content -->
-    <main class="px-6 lg:px-12 py-12 lg:py-20 max-w-[1440px] mx-auto">
-      <h1 class="text-4xl lg:text-6xl font-bold text-black mb-10 lg:mb-16 tracking-tight font-sans">
+    <main class="flex-1 px-6 lg:px-12 py-12 lg:py-20 max-w-[1440px] mx-auto w-full">
+      <h1 class="text-4xl lg:text-6xl font-bold text-[var(--qtimuikit-bnw-0)] mb-10 lg:mb-16 tracking-tight font-sans">
         Articles
       </h1>
 
-      <!-- Articles Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-x-6 lg:gap-y-12 mb-16">
         <article
           v-for="(article, index) in articles"
           :key="index"
           class="group cursor-pointer flex flex-col"
         >
-          <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4 bg-gray-100 relative">
+          <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4 bg-[var(--qtimuikit-bnw-3)]">
             <img
               :src="article.image"
               :alt="article.title"
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             >
           </div>
-
           <div class="space-y-3 flex-1 flex flex-col">
-            <p class="text-sm lg:text-base text-gray-900 leading-relaxed line-clamp-3 font-sans">
+            <p class="text-sm lg:text-base text-[var(--qtimuikit-bnw-0)] leading-relaxed line-clamp-3 font-sans">
               {{ article.title }}
             </p>
-
             <div
               v-if="article.hasLink"
               class="mt-auto pt-2"
             >
-              <span class="text-sm text-purple-400 font-medium border-b border-purple-400/0 hover:border-purple-400 transition-all cursor-pointer font-sans">
+              <span class="text-sm text-[var(--qtimuikit-lightpurple)] font-medium border-b border-transparent hover:border-[var(--qtimuikit-lightpurple)] transition-all cursor-pointer font-sans">
                 Read more
               </span>
             </div>
@@ -80,7 +77,6 @@
         </article>
       </div>
 
-      <!-- Pagination -->
       <div class="flex items-center gap-2">
         <button
           v-for="page in 5"
@@ -88,39 +84,34 @@
           :class="[
             'w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-200 font-sans',
             currentPage === page
-              ? 'bg-black text-white'
-              : 'bg-white text-gray-900 border border-gray-200 hover:border-gray-400 hover:bg-gray-50'
+              ? 'bg-[var(--qtimuikit-bnw-0)] text-[var(--qtimuikit-bnw-4)]'
+              : 'bg-[var(--qtimuikit-bnw-4)] text-[var(--qtimuikit-bnw-0)] border border-[var(--qtimuikit-bnw-3)] hover:border-[var(--qtimuikit-bnw-2)]'
           ]"
           @click="currentPage = page"
         >
           {{ page }}
         </button>
-
         <button
-          class="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 hover:border-gray-400 hover:bg-gray-50 transition-colors"
+          class="w-10 h-10 rounded-full flex items-center justify-center border border-[var(--qtimuikit-bnw-3)] hover:border-[var(--qtimuikit-bnw-2)] transition-colors"
           @click="nextPage"
         >
           <UIcon
             name="lucide:chevron-right"
-            class="w-4 h-4 text-gray-600"
+            class="w-4 h-4 text-[var(--qtimuikit-bnw-2)]"
           />
         </button>
       </div>
     </main>
+
+    <!-- Footer Component -->
     <AppFooter />
   </div>
 </template>
 
-<script setup lang="ts">
-interface Article {
-  title: string
-  image: string
-  hasLink?: boolean
-}
-
+<script setup>
 const currentPage = ref(1)
 
-const articles = ref<Article[]>([
+const articles = ref([
   {
     title: 'The guys from Qtim rewrote the entire site from scratch in a couple of months. In the proces...',
     image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80',
@@ -164,9 +155,7 @@ const articles = ref<Article[]>([
 ])
 
 const nextPage = () => {
-  if (currentPage.value < 5) {
-    currentPage.value++
-  }
+  if (currentPage.value < 5) currentPage.value++
 }
 
 useHead({
@@ -178,7 +167,6 @@ useHead({
 </script>
 
 <style>
-/* Утилита для ограничения строк */
 .line-clamp-3 {
   display: -webkit-box;
   line-clamp: 3;
