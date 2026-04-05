@@ -15,4 +15,15 @@
   --color-green-800: #016538;
   --color-green-900: #0A5331;
   --color-green-950: #052E16;
+
+  --qtimuikit-bnw-0: #101010;
+  --qtimuikit-bnw-1: #232323;
+  --qtimuikit-bnw-2: #868686;
+  --qtimuikit-bnw-3: #F3F3F3;
+  --qtimuikit-bnw-4: #FFFFFF;
+
+  --qtimuikit-teal: #9EFFBF;
+  --qtimuikit-deeppurple: #7941A7;
+  --qtimuikit-lightpurple: #E2BEFF;
+  --qtimuikit-mediumblue: #1059C8;
 }
