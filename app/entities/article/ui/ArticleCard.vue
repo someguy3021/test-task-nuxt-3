@@ -17,11 +17,10 @@
   <!-- Реальная карточка -->
   <div
     v-else-if="article"
-    class="group cursor-pointer flex flex-col"
+    class="group cursor-pointer flex flex-col transition-transform duration-300 hover:-translate-y-1"
     @click="emit('click')"
   >
     <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4 bg-[var(--qtimuikit-bnw-3)]">
-      <!-- Если у статьи есть image – используем NuxtImg с кастомным слотом -->
       <NuxtImg
         v-if="article.image"
         :src="article.image"
@@ -35,14 +34,12 @@
         @error="imageError = true"
       >
         <template #default="{ src, isLoaded }">
-          <!-- Реальное изображение, когда загрузилось -->
           <img
             v-if="isLoaded && !imageError"
             :src="src"
             :alt="article.title"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           >
-          <!-- Плейсхолдер во время загрузки или при ошибке -->
           <div
             v-else
             class="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gray-100"
@@ -54,8 +51,6 @@
           </div>
         </template>
       </NuxtImg>
-
-      <!-- Если у статьи нет image – сразу показываем плейсхолдер -->
       <div
         v-else
         class="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gray-100"
@@ -72,7 +67,9 @@
         {{ article.title }}
       </p>
       <div class="mt-auto pt-2">
-        <span class="text-sm text-[var(--qtimuikit-lightpurple)] font-medium border-b border-transparent hover:border-[var(--qtimuikit-lightpurple)] transition-all cursor-pointer font-sans">
+        <span
+          class="read-more text-sm text-[var(--qtimuikit-lightpurple)] font-medium border-b border-transparent transition-all cursor-pointer font-sans opacity-0 group-hover:opacity-100 hover:border-[var(--qtimuikit-lightpurple)]"
+        >
           Read more
         </span>
       </div>
@@ -108,5 +105,9 @@ watch(() => props.article?.image, () => {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.read-more {
+  transition: opacity 0.2s ease, border-color 0.2s ease;
 }
 </style>
