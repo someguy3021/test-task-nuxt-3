@@ -1,16 +1,15 @@
 <template>
   <div v-if="totalPages > 1" class="flex items-center gap-2">
-    <!-- Кнопка "Назад" -->
     <UButton
       v-if="currentPage > 1"
       variant="outline"
       color="neutral"
       class="rounded-full w-10 h-10 flex items-center justify-center border-[var(--qtimuikit-bnw-3)] hover:border-[var(--qtimuikit-bnw-2)]"
       icon="i-lucide-chevron-left"
+      :disabled="disabled"
       @click="currentPage = currentPage - 1"
     />
 
-    <!-- Кнопки страниц -->
     <UButton
       v-for="p in visiblePages"
       :key="p"
@@ -23,16 +22,17 @@
           : 'bg-[var(--qtimuikit-bnw-4)] text-[var(--qtimuikit-bnw-0)] border border-[var(--qtimuikit-bnw-3)] hover:border-[var(--qtimuikit-bnw-2)]'
       ]"
       :label="String(p)"
+      :disabled="disabled"
       @click="currentPage = p"
     />
 
-    <!-- Кнопка "Вперёд" -->
     <UButton
       v-if="currentPage < totalPages"
       variant="outline"
       color="neutral"
       class="rounded-full w-10 h-10 flex items-center justify-center border-[var(--qtimuikit-bnw-3)] hover:border-[var(--qtimuikit-bnw-2)]"
       icon="i-lucide-chevron-right"
+      :disabled="disabled"
       @click="currentPage = currentPage + 1"
     />
   </div>
@@ -44,6 +44,7 @@ import { computed } from 'vue'
 const props = defineProps<{
   totalPages: number
   modelValue: number
+  disabled?: boolean
 }>()
 
 const emit = defineEmits<{
