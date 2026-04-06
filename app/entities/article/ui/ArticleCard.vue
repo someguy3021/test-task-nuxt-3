@@ -1,12 +1,72 @@
 <template>
-  <article class="group cursor-pointer flex flex-col" @click="emit('click')">
-    <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4 bg-[var(--qtimuikit-bnw-3)]">
-      <img
-        :src="article.image || defaultImage"
-        :alt="article.title"
-        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-      >
+  <!-- Скелетон -->
+  <div v-if="skeleton" class="flex flex-col">
+    <div class="aspect-[4/3] rounded-lg mb-4 bg-[var(--qtimuikit-bnw-3)] animate-pulse" />
+    <div class="space-y-3 flex-1 flex flex-col">
+      <div class="space-y-2">
+        <div class="h-4 bg-[var(--qtimuikit-bnw-3)] rounded animate-pulse" />
+        <div class="h-4 w-11/12 bg-[var(--qtimuikit-bnw-3)] rounded animate-pulse" />
+        <div class="h-4 w-10/12 bg-[var(--qtimuikit-bnw-3)] rounded animate-pulse" />
+      </div>
+      <div class="mt-auto pt-2">
+        <div class="h-3 w-20 bg-[var(--qtimuikit-lightpurple)]/30 rounded animate-pulse" />
+      </div>
     </div>
+  </div>
+
+  <!-- Реальная карточка -->
+  <div
+    v-else-if="article"
+    class="group cursor-pointer flex flex-col"
+    @click="emit('click')"
+  >
+    <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4 bg-[var(--qtimuikit-bnw-3)]">
+      <!-- Если у статьи есть image – используем NuxtImg с кастомным слотом -->
+      <NuxtImg
+        v-if="article.image"
+        :src="article.image"
+        :alt="article.title"
+        :custom="true"
+        width="400"
+        height="300"
+        format="webp"
+        class="w-full h-full"
+        @load="imageLoaded = true"
+        @error="imageError = true"
+      >
+        <template #default="{ src, isLoaded }">
+          <!-- Реальное изображение, когда загрузилось -->
+          <img
+            v-if="isLoaded && !imageError"
+            :src="src"
+            :alt="article.title"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          >
+          <!-- Плейсхолдер во время загрузки или при ошибке -->
+          <div
+            v-else
+            class="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gray-100"
+          >
+            <UIcon name="lucide:image-off" class="w-8 h-8 text-[var(--qtimuikit-bnw-2)] mb-2" />
+            <p class="text-xs text-[var(--qtimuikit-bnw-2)] font-sans">
+              К сожалению, API не предоставляет картинки
+            </p>
+          </div>
+        </template>
+      </NuxtImg>
+
+      <!-- Если у статьи нет image – сразу показываем плейсхолдер -->
+      <div
+        v-else
+        class="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gray-100"
+      >
+        <UIcon name="lucide:image-off" class="w-8 h-8 text-[var(--qtimuikit-bnw-2)] mb-2" />
+        <p class="text-xs text-[var(--qtimuikit-bnw-2)] font-sans">
+          К сожалению, API не предоставляет картинки
+        </p>
+      </div>
+    </div>
+
     <div class="space-y-3 flex-1 flex flex-col">
       <p class="text-sm lg:text-base text-[var(--qtimuikit-bnw-0)] leading-relaxed line-clamp-3 font-sans">
         {{ article.title }}
@@ -17,21 +77,28 @@
         </span>
       </div>
     </div>
-  </article>
+  </div>
 </template>
 
 <script setup lang="ts">
 import type { Article } from '../model/article'
 
-defineProps<{
-  article: Article
+const props = defineProps<{
+  article?: Article
+  skeleton?: boolean
 }>()
 
 const emit = defineEmits<{
   click: []
 }>()
 
-const defaultImage = 'https://via.placeholder.com/400x300?text=No+Image'
+const imageError = ref(false)
+const imageLoaded = ref(false)
+
+watch(() => props.article?.image, () => {
+  imageError.value = false
+  imageLoaded.value = false
+})
 </script>
 
 <style scoped>
