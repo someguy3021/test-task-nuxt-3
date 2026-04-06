@@ -99,9 +99,13 @@
         </div>
 
         <!-- Go Button (Center) -->
-        <button class="w-32 h-16 bg-[var(--qtimuikit-bnw-0)] rounded-t-full flex items-start justify-center pt-4 hover:pt-5 transition-all">
-          <span class="text-[var(--qtimuikit-bnw-4)] text-lg font-medium font-sans">Go</span>
-        </button>
+<button
+  class="w-[360px] h-[180px] bg-[var(--qtimuikit-bnw-0)] rounded-t-full flex flex-col items-center justify-end pb-12 hover:pb-14 transition-all duration-300"
+>
+  <span class="text-[var(--qtimuikit-bnw-4)] text-3xl lg:text-4xl font-medium font-sans">
+    Go
+  </span>
+</button>
 
         <!-- Links Right -->
         <div class="flex items-center gap-6">
