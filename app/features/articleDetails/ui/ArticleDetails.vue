@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="loading" class="flex justify-center py-20">
-      <div class="w-10 h-10 border-4 border-[var(--qtimuikit-bnw-3)] border-t-[var(--qtimuikit-bnw-0)] rounded-full animate-spin"/>
+      <div class="w-10 h-10 border-4 border-[var(--qtimuikit-bnw-3)] border-t-[var(--qtimuikit-bnw-0)] rounded-full animate-spin" />
     </div>
 
     <div v-else-if="error" class="text-center py-20">
@@ -14,24 +14,60 @@
         {{ article.title }}
       </h1>
 
+      <!-- Блок изображения -->
       <div class="w-full aspect-[16/9] lg:aspect-[21/9] overflow-hidden rounded-lg mb-12 lg:mb-16 bg-[var(--qtimuikit-bnw-3)]">
-        <img
-          :src="article.image || 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=1600&auto=format&fit=crop&q=80'"
-          :alt="article.title"
-          class="w-full h-full object-cover"
+        <template v-if="article.image && !imageError">
+          <NuxtImg
+            :src="article.image"
+            :alt="article.title"
+            :custom="true"
+            width="1200"
+            height="630"
+            format="webp"
+            class="w-full h-full"
+            @error="imageError = true"
+            @load="imageLoaded = true"
+          >
+            <template #default="{ src, isLoaded }">
+              <img
+                v-if="isLoaded && !imageError"
+                :src="src"
+                :alt="article.title"
+                class="w-full h-full object-cover"
+              >
+              <div
+                v-else
+                class="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gray-100"
+              >
+                <UIcon name="lucide:image-off" class="w-12 h-12 text-[var(--qtimuikit-bnw-2)] mb-3" />
+                <p class="text-sm text-[var(--qtimuikit-bnw-2)] font-sans">
+                  К сожалению, API не предоставляет картинки
+                </p>
+              </div>
+            </template>
+          </NuxtImg>
+        </template>
+
+        <div
+          v-else
+          class="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gray-100"
         >
+          <UIcon name="lucide:image-off" class="w-12 h-12 text-[var(--qtimuikit-bnw-2)] mb-3" />
+          <p class="text-sm text-[var(--qtimuikit-bnw-2)] font-sans">
+            К сожалению, API не предоставляет картинки
+          </p>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-        <div class="lg:col-span-2">
-          <span class="text-sm text-[var(--qtimuikit-bnw-2)] font-medium font-sans">About</span>
-        </div>
-        <div class="lg:col-span-7">
-          <div class="prose prose-lg max-w-none">
-            <p class="text-xl lg:text-2xl text-[var(--qtimuikit-bnw-0)] leading-relaxed font-sans">
-              {{ article.body || article.description || 'No content available' }}
-            </p>
-          </div>
+      <!-- Контент: About + текст в одной колонке, ширина 700px -->
+      <div class="max-w-[700px]">
+        <span class="text-sm text-[var(--qtimuikit-bnw-2)] font-medium font-sans block mb-4">
+          About
+        </span>
+        <div class="prose prose-lg max-w-none">
+          <p class="text-xl lg:text-2xl text-[var(--qtimuikit-bnw-0)] leading-relaxed font-sans">
+            {{ article.body || article.description || 'No content available' }}
+          </p>
         </div>
       </div>
     </template>
@@ -47,6 +83,14 @@ const props = defineProps<{
 
 const idRef = computed(() => props.id)
 const { article, loading, error } = useArticleDetails(idRef)
+
+const imageError = ref(false)
+const imageLoaded = ref(false)
+
+watch(() => article.value?.image, () => {
+  imageError.value = false
+  imageLoaded.value = false
+})
 
 useHead(() => ({
   title: article.value?.title ? `${article.value.title} - QTIM` : 'Loading...',
