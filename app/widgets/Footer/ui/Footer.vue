@@ -47,10 +47,11 @@
               Drew, NM 52678
             </p>
             <button class="w-10 h-10 bg-[var(--qtimuikit-bnw-0)] rounded-full flex items-center justify-center hover:scale-110 transition-transform mt-2">
-              <UIcon
-                name="lucide:send"
-                class="w-4 h-4 text-[var(--qtimuikit-bnw-4)]"
-              />
+              <img
+                src="~/assets/css/icons/arrow.svg"
+                alt="send"
+                class="w-4 h-4"
+              >
             </button>
           </div>
 
@@ -64,10 +65,11 @@
               Drew, NM 52678
             </p>
             <button class="w-10 h-10 bg-[var(--qtimuikit-bnw-0)] rounded-full flex items-center justify-center hover:scale-110 transition-transform mt-2">
-              <UIcon
-                name="lucide:send"
-                class="w-4 h-4 text-[var(--qtimuikit-bnw-4)]"
-              />
+              <img
+                src="~/assets/css/icons/arrow.svg"
+                alt="send"
+                class="w-4 h-4"
+              >
             </button>
           </div>
         </div>
@@ -97,10 +99,8 @@
           </a>
         </div>
 
-        <!-- Go Button (Center) с эффектом "восходящего солнца" -->
-        <button
-          class="w-[360px] h-[180px] bg-[var(--qtimuikit-bnw-0)] rounded-t-full flex flex-col items-center justify-end pb-12 "
-        >
+        <!-- Go Button (Center) -->
+        <button class="w-[360px] h-[180px] bg-[var(--qtimuikit-bnw-0)] rounded-t-full flex flex-col items-center justify-end pb-12">
           <span class="text-[var(--qtimuikit-bnw-4)] text-3xl lg:text-4xl font-medium font-sans">
             Go
           </span>
