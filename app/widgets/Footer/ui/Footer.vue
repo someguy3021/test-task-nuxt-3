@@ -1,7 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-<!-- components/AppFooter.vue -->
 <template>
-  <footer class="bg-[var(--qtimuikit-lightpurple)] relative pt-20 overflow-hidden mt-auto">
+  <footer class="bg-[var(--qtimuikit-lightpurple)] relative pt-20 overflow-visible mt-auto">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
       <!-- Main Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-32">
@@ -75,7 +74,7 @@
       </div>
 
       <!-- Bottom Section -->
-      <div class="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10 overflow-visible">
         <!-- Social Links Left -->
         <div class="flex items-center gap-6">
           <a
@@ -98,14 +97,14 @@
           </a>
         </div>
 
-        <!-- Go Button (Center) -->
-<button
-  class="w-[360px] h-[180px] bg-[var(--qtimuikit-bnw-0)] rounded-t-full flex flex-col items-center justify-end pb-12 hover:pb-14 transition-all duration-300"
->
-  <span class="text-[var(--qtimuikit-bnw-4)] text-3xl lg:text-4xl font-medium font-sans">
-    Go
-  </span>
-</button>
+        <!-- Go Button (Center) с эффектом "восходящего солнца" -->
+        <button
+          class="w-[360px] h-[180px] bg-[var(--qtimuikit-bnw-0)] rounded-t-full flex flex-col items-center justify-end pb-12 "
+        >
+          <span class="text-[var(--qtimuikit-bnw-4)] text-3xl lg:text-4xl font-medium font-sans">
+            Go
+          </span>
+        </button>
 
         <!-- Links Right -->
         <div class="flex items-center gap-6">
