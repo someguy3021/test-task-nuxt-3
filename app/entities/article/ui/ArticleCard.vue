@@ -1,6 +1,9 @@
 <template>
   <!-- Скелетон -->
-  <div v-if="skeleton" class="flex flex-col">
+  <div
+    v-if="skeleton"
+    class="flex flex-col"
+  >
     <div class="aspect-[4/3] rounded-lg mb-4 bg-[var(--qtimuikit-bnw-3)] animate-pulse" />
     <div class="space-y-3 flex-1 flex flex-col">
       <div class="space-y-2">
@@ -44,7 +47,10 @@
             v-else
             class="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gray-100"
           >
-            <UIcon name="lucide:image-off" class="w-8 h-8 text-[var(--qtimuikit-bnw-2)] mb-2" />
+            <UIcon
+              name="lucide:image-off"
+              class="w-8 h-8 text-[var(--qtimuikit-bnw-2)] mb-2"
+            />
             <p class="text-xs text-[var(--qtimuikit-bnw-2)] font-sans">
               К сожалению, API не предоставляет картинки
             </p>
@@ -55,7 +61,10 @@
         v-else
         class="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gray-100"
       >
-        <UIcon name="lucide:image-off" class="w-8 h-8 text-[var(--qtimuikit-bnw-2)] mb-2" />
+        <UIcon
+          name="lucide:image-off"
+          class="w-8 h-8 text-[var(--qtimuikit-bnw-2)] mb-2"
+        />
         <p class="text-xs text-[var(--qtimuikit-bnw-2)] font-sans">
           К сожалению, API не предоставляет картинки
         </p>

@@ -1,8 +1,18 @@
 <template>
   <div>
-    <div v-if="error" class="text-center py-20">
-      <p class="text-red-500">Ошибка загрузки статей</p>
-      <UButton class="mt-4" @click="refetch">Повторить</UButton>
+    <div
+      v-if="error"
+      class="text-center py-20"
+    >
+      <p class="text-red-500">
+        Ошибка загрузки статей
+      </p>
+      <UButton
+        class="mt-4"
+        @click="refetch"
+      >
+        Повторить
+      </UButton>
     </div>
 
     <div v-else>

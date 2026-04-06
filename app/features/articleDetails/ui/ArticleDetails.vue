@@ -1,12 +1,22 @@
 <template>
   <div>
-    <div v-if="loading" class="flex justify-center py-20">
+    <div
+      v-if="loading"
+      class="flex justify-center py-20"
+    >
       <div class="w-10 h-10 border-4 border-[var(--qtimuikit-bnw-3)] border-t-[var(--qtimuikit-bnw-0)] rounded-full animate-spin" />
     </div>
 
-    <div v-else-if="error" class="text-center py-20">
-      <p class="text-red-500">Статья не найдена</p>
-      <UButton to="/articles">Вернуться к списку</UButton>
+    <div
+      v-else-if="error"
+      class="text-center py-20"
+    >
+      <p class="text-red-500">
+        Статья не найдена
+      </p>
+      <UButton to="/articles">
+        Вернуться к списку
+      </UButton>
     </div>
 
     <template v-else-if="article">
@@ -39,7 +49,10 @@
                 v-else
                 class="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gray-100"
               >
-                <UIcon name="lucide:image-off" class="w-12 h-12 text-[var(--qtimuikit-bnw-2)] mb-3" />
+                <UIcon
+                  name="lucide:image-off"
+                  class="w-12 h-12 text-[var(--qtimuikit-bnw-2)] mb-3"
+                />
                 <p class="text-sm text-[var(--qtimuikit-bnw-2)] font-sans">
                   К сожалению, API не предоставляет картинки
                 </p>
@@ -52,7 +65,10 @@
           v-else
           class="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gray-100"
         >
-          <UIcon name="lucide:image-off" class="w-12 h-12 text-[var(--qtimuikit-bnw-2)] mb-3" />
+          <UIcon
+            name="lucide:image-off"
+            class="w-12 h-12 text-[var(--qtimuikit-bnw-2)] mb-3"
+          />
           <p class="text-sm text-[var(--qtimuikit-bnw-2)] font-sans">
             К сожалению, API не предоставляет картинки
           </p>
