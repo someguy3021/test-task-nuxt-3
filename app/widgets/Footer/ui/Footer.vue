@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <!-- components/AppFooter.vue -->
 <template>
-  <footer class="bg-[var(--qtimuikit-lightpurple)] relative pt-20 pb-8 overflow-hidden mt-auto">
+  <footer class="bg-[var(--qtimuikit-lightpurple)] relative pt-20 overflow-hidden mt-auto">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
       <!-- Main Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-32">
