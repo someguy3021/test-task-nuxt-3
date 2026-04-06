@@ -17,8 +17,14 @@
 
     <template #right>
       <div class="hidden md:flex items-center gap-8 text-base font-medium text-[var(--qtimuikit-bnw-0)]">
-        <NuxtLink to="/articles" class="hover:opacity-60 transition-opacity">Works</NuxtLink>
-        <NuxtLink to="/articles" class="hover:opacity-60 transition-opacity">About</NuxtLink>
+        <NuxtLink
+          to="/articles"
+          class="hover:opacity-60 transition-opacity"
+        >Works</NuxtLink>
+        <NuxtLink
+          to="/articles"
+          class="hover:opacity-60 transition-opacity"
+        >About</NuxtLink>
       </div>
 
       <div class="flex items-center gap-3 ml-18">

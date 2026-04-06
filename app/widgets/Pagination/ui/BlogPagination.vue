@@ -1,5 +1,8 @@
 <template>
-  <div v-if="totalPages > 1" class="flex items-center gap-2">
+  <div
+    v-if="totalPages > 1"
+    class="flex items-center gap-2"
+  >
     <!-- Назад -->
     <UButton
       v-if="currentPage > 1"
@@ -54,7 +57,7 @@ const emit = defineEmits<{
 
 const currentPage = computed({
   get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val)
+  set: val => emit('update:modelValue', val)
 })
 
 const visiblePages = computed(() => {
