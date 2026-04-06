@@ -22,21 +22,22 @@
       </div>
 
       <div class="flex items-center gap-3 ml-18">
-        <!-- Кнопка языка: белый фон, серая обводка, круглая, картинка чуть меньше -->
-        <button class="w-9 h-9 rounded-full bg-white border border-[var(--qtimuikit-bnw-2)] flex items-center justify-center transition-colors hover:border-[var(--qtimuikit-bnw-1)]">
+        <!-- Кнопка языка – такой же размер, как и кнопка Let's work -->
+        <button class="w-10 h-10 rounded-full bg-white border border-[var(--qtimuikit-bnw-2)] flex items-center justify-center transition-colors hover:border-[var(--qtimuikit-bnw-1)]">
           <img
             src="~/assets/css/icons/unitedkingdom.svg"
             alt="English"
             class="w-5 h-5 object-contain"
           >
         </button>
+
+        <!-- Кнопка Let's work -->
         <UButton
           color="neutral"
-          class="rounded-full px-6 font-medium bg-[var(--qtimuikit-bnw-0)] text-[var(--qtimuikit-bnw-4)] hover:bg-[var(--qtimuikit-bnw-1)]"
+          class="rounded-full px-8 py-3 font-medium bg-[var(--qtimuikit-bnw-0)] text-[var(--qtimuikit-bnw-4)] hover:bg-[var(--qtimuikit-bnw-1)]"
         >
           Let's work
         </UButton>
-        <!-- <UColorModeButton /> -->
       </div>
     </template>
   </UHeader>
